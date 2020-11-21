@@ -37,28 +37,26 @@
           {{- next_inject('sidebar') }}
         </section>
       </div>
- <!-- require APlayer -->
+<!-- require APlayer -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
     <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
     <!-- require MetingJS-->
-    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script> 
-    <!--网易云-->   
-    <meting-js
-      server="netease"
-      id="5256404009"
-	    type="playlist" 
-	    mini="false"
-      fixed="false"
-      list-folded="true"
-      autoplay="true"
-      volume="0.4"
-      theme="#FADFA3"
-      order="random"
-	    loop="all"
-      preload="auto"
-      mutex="true">
-    </meting-js>
-
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> 
+	<!--网易云-->   
+    <div class="aplayer" 
+      data-id="5256404009" 
+      data-server="netease" 
+      data-type="playlist" 
+      data-fixed="false" 
+      data-autoplay="true" 
+      data-list-folded="true"
+      data-mutex="true"
+      data-order="random" 
+      data-loop="all"
+      data-volume="0.4" 
+      data-theme="#FADFA3" 
+      date-preload="auto" > 
+    </div>
        <!--添加彩色滚动变换字体-->
       <div id="binft"></div>
       <script>
