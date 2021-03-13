@@ -608,7 +608,7 @@ changyan:
 # Valine
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  enable: true
+  enable: false
   appId: XEanFd8TWhMlWwcfIm9mk91t-MdYXbMMI
   appKey: NJ9ninjH2inNYGe4dl6VVqJj
   serverURLs: # When the custom domain name is enabled, fill it in here
@@ -618,7 +618,7 @@ valine:
   pageSize: 10 # Pagination size
   lang: # Language, available values: en, zh-cn
   visitor: false # Article reading statistic
-  comment_count: true # If false, comment count will only be displayed in post page, not in home page
+  comment_count: fales # If false, comment count will only be displayed in post page, not in home page
   recordIP: false # Whether to record the commenter IP
   enableQQ: false # Whether to enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: [] # Set required fields: [nick] | [nick, mail]
