@@ -163,7 +163,7 @@ links_settings:
   layout: block
 
 links:
-  Kangec blog: https://www.ardien.xyz
+  Kangec blog: https://kangec.github.io
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
