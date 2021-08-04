@@ -36,7 +36,7 @@ before_script:
 # 执行清缓存，生成网页操作
 script:
   #- hexo clean
-  - hexo generate
+  #- hexo generate
   - gulp
   - echo ${ENV_TEST}
   - hexo deploy
