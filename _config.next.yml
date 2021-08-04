@@ -609,8 +609,8 @@ changyan:
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true
-  appId: UH7XeqAOzFVALYyYUJfCnbkk-gzGzoHsz-MdYXbMMI
-  appKey: SU7V8zmtiwX6YKGa9JIKBcgK
+  appId: XEanFd8TWhMlWwcfIm9mk91t-MdYXbMMI
+  appKey: NJ9ninjH2inNYGe4dl6VVqJj
   serverURLs: # When the custom domain name is enabled, fill it in here
   placeholder: Just go go # Comment box placeholder
   avatar: mm # Gravatar style
