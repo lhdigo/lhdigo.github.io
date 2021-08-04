@@ -608,9 +608,9 @@ changyan:
 # Valine
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  enable: false
-  appId: XEanFd8TWhMlWwcfIm9mk91t-MdYXbMMI
-  appKey: NJ9ninjH2inNYGe4dl6VVqJj
+  enable: true
+  appId: UH7XeqAOzFVALYyYUJfCnbkk-gzGzoHsz-MdYXbMMI
+  appKey: SU7V8zmtiwX6YKGa9JIKBcgK
   serverURLs: # When the custom domain name is enabled, fill it in here
   placeholder: Just go go # Comment box placeholder
   avatar: mm # Gravatar style
@@ -630,7 +630,7 @@ livere_uid: # <your_uid>
 # Gitalk
 # For more information: https://gitalk.github.io, https://github.com/gitalk/gitalk
 gitalk:
-  enable: true
+  enable: false
   github_id: lhdigo # GitHub repo owner
   repo: lhdigo.github.io # Repository name to store issues
   client_id: 30ec80632267fa453637 # GitHub Application Client ID
