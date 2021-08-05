@@ -12,7 +12,11 @@ cover: https://i.loli.net/2020/10/19/lyn1JfNG9zV3tFp.png
 ## 据说第一篇文章是Hello World会带来好运噢 ^^
 
 ```java
-System.out.println("HelloWorld");
+public class HelloWorld{
+    public static void main(String[] args) {
+        System.out.println("HelloWorld");
+    }
+}
 ```
 
 
