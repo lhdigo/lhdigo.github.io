@@ -28,7 +28,7 @@ jobs:
         npm i
         hexo clean
         gulp
-       # hexo g
+        hexo g
     - name: Deploy to Github Pages
       env:
         GIT_NAME: lhdigo
