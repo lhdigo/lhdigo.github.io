@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lhdigo.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="LHDIGO">
+<meta property="og:url" content="https://lhdigo.github.io/index.html">
+<meta property="og:site_name" content="LHDIGO">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="lhdigo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lhdigo.github.io/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>LHDIGO</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="LHDIGO" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">LHDIGO</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="lhdigo"
+      src="/images/avatar/avatar.png">
+  <p class="site-author-name" itemprop="name">lhdigo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lhdigo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lhdigo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lhdigo@163.com" title="E-Mail → mailto:lhdigo@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5650475049" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5650475049" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://kangec.github.io/" title="https:&#x2F;&#x2F;kangec.github.io" rel="noopener" target="_blank">Kangec blog</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+<!-- require APlayer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <!-- require MetingJS-->
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> 
+	<!--网易云-->   
+    <div class="aplayer" 
+      data-id="7750234880" 
+      data-server="tencent" 
+      data-type="playlist" 
+      data-fixed="false" 
+      data-autoplay="true" 
+      data-list-folded="true"
+      data-mutex="true"
+      data-order="random" 
+      data-loop="all"
+      data-volume="0.4" 
+      data-theme="#FADFA3" 
+      date-preload="auto" > 
+    </div>
+       <!--添加彩色滚动变换字体-->
+      <div id="binft"></div>
+      <script>
+        var binft = function (r) {
+          function t() {
+            return b[Math.floor(Math.random() * b.length)]
+          }  
+          function e() {
+            return String.fromCharCode(94 * Math.random() + 33)
+          }
+          function n(r) {
+            for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+              var l = document.createElement("span");
+              l.textContent = e(), l.style.color = t(), n.appendChild(l)
+            }
+            return n
+          }
+          function i() {
+            var t = o[c.skillI];
+            c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+          }
+          var l = "",
+          o = ["隐约雷鸣，阴霾天空，", "但盼风雨来，能留你在此。","隐约雷鸣，阴霾天空，", "即使天无雨，我亦留此地。"].map(function (r) {
+          return r + ""
+          }),
+          a = 2,
+          g = 1,
+          s = 5,
+          d = 75,
+          b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+          c = {
+            text: "",
+            prefixP: -s,
+            skillI: 0,
+            skillP: 0,
+            direction: "forward",
+            delay: a,
+            step: g
+          };
+          i()
+          };
+          binft(document.getElementById('binft'));
+      </script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/09/30/HelloWorld/HelloWorld/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+              <span class="post-sticky-flag" title="置顶">
+                <i class="fa fa-thumbtack"></i>
+              </span><a href="/2020/09/30/HelloWorld/HelloWorld/" class="post-title-link" itemprop="url">HelloWorld</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-30 20:06:10" itemprop="dateCreated datePublished" datetime="2020-09-30T20:06:10+08:00">2020-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HelloWorld/" itemprop="url" rel="index"><span itemprop="name">HelloWorld</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/09/30/HelloWorld/HelloWorld/" class="post-meta-item leancloud_visitors" data-flag-title="HelloWorld" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/30/HelloWorld/HelloWorld/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/30/HelloWorld/HelloWorld/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h1><h2 id="据说第一篇文章是Hello-World会带来好运噢"><a href="#据说第一篇文章是Hello-World会带来好运噢" class="headerlink" title="据说第一篇文章是Hello World会带来好运噢 ^^"></a>据说第一篇文章是Hello World会带来好运噢 ^^</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2023/08/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">进程与线程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-30 14:54:53" itemprop="dateCreated datePublished" datetime="2023-08-30T14:54:53+08:00">2023-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/08/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="进程与线程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/08/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="什么是线程和进程？"><a href="#什么是线程和进程？" class="headerlink" title="什么是线程和进程？"></a>什么是线程和进程？</h2><blockquote>
+<ul>
+<li>进程是系统运行程序的基本单位</li>
+<li>线程是进程划分的更小运行单位，是CPU调度的基本单位。一个进程在运行过程中可能会有一个或多个线程，这些线程共享着进程的堆和方法区资源，但是，线程的程序计数器、虚拟机栈、本地方法栈是私有的。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="为何线程之间的程序计数器是私有的呢？"><a href="#为何线程之间的程序计数器是私有的呢？" class="headerlink" title="为何线程之间的程序计数器是私有的呢？"></a>为何线程之间的程序计数器是私有的呢？</h2><blockquote>
+<p>程序计数器私有主要是为了为了线程切换回来后能够还原为正确的执行位置（顺序）</p>
+<ul>
+<li>字节码解释器通过改变程序计数器来依次读取执行指令，从而实现代码的流程控制，如：顺序执行、选择、循环、异常等处理。</li>
+<li>在多线程的情况下，程序计数器能够记录当前执行的位置，从而当线程被切换回来后，能够知道上一次执行位置到哪了。</li>
+</ul>
+</blockquote>
+<h2 id="线程之间虚拟机栈和本地方法栈为何是私有的呢？"><a href="#线程之间虚拟机栈和本地方法栈为何是私有的呢？" class="headerlink" title="线程之间虚拟机栈和本地方法栈为何是私有的呢？"></a>线程之间虚拟机栈和本地方法栈为何是私有的呢？</h2><p><strong>为了保证线程之间的局部变量不会被别的线程访问。</strong></p>
+<blockquote>
+<ul>
+<li>虚拟机栈：运行java方法的时候，创建一个栈帧存储局部变量、操作数栈、常量池引用等信息。</li>
+<li>本地方法栈：与虚拟机栈类似，不同的是本地方法栈是运行native方法时候…</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="堆和方法区"><a href="#堆和方法区" class="headerlink" title="堆和方法区"></a>堆和方法区</h2><p>方法区存储的是类的静态结构和元信息，而堆存储的是类的实例化对象及其相关数据。方法区是所有实例共享的，而堆是每个对象实例独立拥有的。</p>
+<ol>
+<li><p>堆：</p>
+<ul>
+<li>堆和方法区都是线程共享的资源，其中堆是进程中最大的一块内存，主要存储新建的对象</li>
+<li>所有通过关键字<code>new</code>​​​创建的对象都会被分配到堆上。</li>
+<li>堆的内存是动态分配和回收的，即对象的创建和销毁都是由垃圾回收器（Garbage Collector）自动完成的。</li>
+<li>堆内存的大小可以通过JVM参数进行调整。</li>
+<li>堆被所有线程共享，因此是线程安全的。</li>
+</ul>
+</li>
+<li><p>方法区：</p>
+<ul>
+<li>方法区是Java虚拟机用于存储已加载的类信息、常量、静态变量、即时编译器编译后的代码等的一块内存区域。</li>
+<li>方法区也被称为永久代（Permanent Generation），在早期版本的JVM中，它是使用永久代来实现的。但是从JDK 8开始，永久代被元空间（Metaspace）所取代。</li>
+<li>方法区存储的是类级别的信息，而堆存储的是对象级别的信息。</li>
+<li>方法区的内存空间在JVM启动时被分配，并且其大小也可以通过JVM参数进行调整</li>
+<li>方法区主要用于存储类的结构信息，如字段、方法、构造函数、父类、接口等，以及运行时常量池、静态变量等。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="并发和并行的区别"><a href="#并发和并行的区别" class="headerlink" title="并发和并行的区别"></a>并发和并行的区别</h2><ol>
+<li>并发：两个及两个以上的作业在<strong>同一时间段</strong>内执行，看起来是同时执行，实际上只是cpu调度切换速度很快。单核处理器</li>
+<li>并行：两个或两个以上的作业在<strong>同一时刻执行。</strong>多核处理器</li>
+</ol>
+<p>‍</p>
+<h2 id="同步和异步的区别"><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h2><ol>
+<li>同步：方法调用后，在没有得到返回值前，不会执行之后的方法，会一直等待。</li>
+<li>异步：方法调用后，不用等待返回值，继续执行后续的程序。通常会通过回调、轮询或事件通知等方式获取异步方法执行的结果。</li>
+</ol>
+<h2 id="为什么要使用多线程"><a href="#为什么要使用多线程" class="headerlink" title="为什么要使用多线程?"></a>为什么要使用多线程?</h2><ol>
+<li><p>总体：</p>
+<ul>
+<li>计算机底层：线程可以比作轻量级的进程，是程序执行的最小单位，线程之间的切换和调度成本远远小于进程。另外，多核cpu时代意味着多个线程可以同时运行，减少了线程上下文切换的开销。</li>
+<li>互联网发展趋势：系统越来越大，动辄上百万级的并发量，使用多线程并发编程是开发高并发系统的基础，提高并发能力、性能。</li>
+</ul>
+</li>
+<li><p>计算机底层：</p>
+<ul>
+<li>单核时代：为了提高单进程利用CPU和IO系统的效率。</li>
+<li>多核时代：为了提高进程利用多核CPU的能力。</li>
+</ul>
+</li>
+</ol>
+<h2 id="多线程带来的问题？"><a href="#多线程带来的问题？" class="headerlink" title="多线程带来的问题？"></a>多线程带来的问题？</h2><ol>
+<li>内存泄露</li>
+<li>死锁</li>
+<li>线程不安全…等</li>
+</ol>
+<h2 id="如何理解线程安全和不安全？"><a href="#如何理解线程安全和不安全？" class="headerlink" title="如何理解线程安全和不安全？"></a>如何理解线程安全和不安全？</h2><p>线程是否安全主要是：多线程访问临界资源后能否保持其的正确性和一致性。</p>
+<p>‍</p>
+<h2 id="线程的生命周期和状态"><a href="#线程的生命周期和状态" class="headerlink" title="线程的生命周期和状态"></a>线程的生命周期和状态</h2><p>Java线程生命周期有6个状态：</p>
+<ol>
+<li>NEW：初始，线程被创建但未调用<code>start()</code>​</li>
+<li>RUNNABLE：运行，线程被调用了<code>start()</code>​</li>
+<li>BLOCKED：阻塞，需要等待锁被释放</li>
+<li>WAITING：执行了<code>wait()</code>​方法后进入等待状态，不能自动唤醒，只能手动唤醒。</li>
+<li>TIME_WAITING：超时等待，执行了<code>wait(long time)</code>、<code>sleep()</code>​、<code>join()</code>​方法后进入等待状态，但是可以自动唤醒。</li>
+<li>TERMINATED：终止，线程执行完毕。</li>
+</ol>
+<p>​​​​<img src="https://s2.loli.net/2023/08/30/Oa7urPSLQIThqCM.png" alt="acd1b5f17a52.png">​​​​</p>
+<h2 id="什么是线程上下文切换"><a href="#什么是线程上下文切换" class="headerlink" title="什么是线程上下文切换"></a>什么是线程上下文切换</h2><p>线程在执行过程中有自己的运行条件和状态（也称上下文）</p>
+<p>线程上下文切换：保存当前线程的上下文、选择下一个需要运行的线程、等待下次占用CPU时恢复现场。</p>
+<ul>
+<li>主动让出CPU：调用了<code>sleep()</code>​、<code>wait()</code>​等方法。</li>
+<li>CPU时间片用完。操作系统为了防止一个线程或则进程长时间占用CPU导致其他线程或进程“饿死”。</li>
+<li>调用来了阻塞类型的系统终端，比如请求IO，线程被阻塞。</li>
+<li>被终止、结束运行。</li>
+</ul>
+<h2 id="什么是线程死锁？如何避免？"><a href="#什么是线程死锁？如何避免？" class="headerlink" title="什么是线程死锁？如何避免？"></a>什么是线程死锁？如何避免？</h2><h3 id="线程死锁"><a href="#线程死锁" class="headerlink" title="线程死锁"></a>线程死锁</h3><blockquote>
+<p>两个或以上线程被同时阻塞，都在请求对方占有的资源且不释放自己占有的资源，造成无限循环等待、阻塞。</p>
+</blockquote>
+<p>死锁四个必要条件：</p>
+<ol>
+<li>互斥：一个资源每次只能被一个线程使用。</li>
+<li>请求与保持：一个线程A因请求资源A而阻塞的时候，对已拥有的资源B一直不释放。</li>
+<li>不剥夺：线程A已获得的资源A在未运行完毕之前，不可被其他线程强行剥夺，只能通过线程A正常使用后完毕后自己释放。</li>
+<li>循环等待：若干个线程之间行程一种头尾相接的循环等待资源的关系。</li>
+</ol>
+<h3 id="预防死锁、避免死锁"><a href="#预防死锁、避免死锁" class="headerlink" title="预防死锁、避免死锁"></a>预防死锁、避免死锁</h3><p>死锁无法解决，只能预防、避免：</p>
+<ol>
+<li><p><strong>预防死锁：</strong>通过破坏死锁的必要条件即可：</p>
+<ol>
+<li>破坏请求与保持条件：一次性申请所有资源。</li>
+<li>破坏不可剥夺条件：占用资源后如果一直申请不到其他资源，主动释放已占有的资源。</li>
+<li>破坏循环等待条件：靠按需申请资源来预防</li>
+</ol>
+</li>
+<li><p><strong>避免死锁：</strong></p>
+<p> 避免死锁就是在资源分配时，借助于算法（比如银行家算法）对资源分配进行计算评估，使其进入安全状态。</p>
+<blockquote>
+<p><strong>安全状态</strong> 指的是系统能够按照某种线程推进顺序（P1、P2、P3…..Pn）来为每个线程分配所需资源，直到满足每个线程对资源的最大需求，使每个线程都可顺利完成。称 <code>&lt;P1、P2、P3.....Pn&gt;</code>​ 序列为安全序列。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="sleep-和wait-方法对比"><a href="#sleep-和wait-方法对比" class="headerlink" title="sleep()和wait()方法对比"></a>sleep()和wait()方法对比</h2><ul>
+<li><p>共同点：两者都可以暂停线程</p>
+</li>
+<li><p>区别：</p>
+<ul>
+<li>​<code>sleep()</code>​ 没有释放锁，而<code>wait()</code>​释放了锁</li>
+<li>​<code>wait()</code>​ 通常被用于线程间交互/通信，<code>sleep()</code>​通常被用于暂停执行。</li>
+<li>​<code>sleep()</code>​是<code>Thread</code>​类的静态方法；<code>wait()</code>​是<code>Object</code>​类的本地方法。</li>
+<li>​<code>sleep()</code>​调用完毕后，线程会自动唤醒；<code>wait()</code>​方法调用后，线程不会自动唤醒，需要别的线程调用同一个对象上的<code>notify()</code>​或者<code>notifyAll()</code>​方法。也可以使用<code>wait(long timeout)</code>​实现线程自动唤醒。</li>
+</ul>
+<p>‍</p>
+</li>
+</ul>
+<h2 id="为什么-wait-​-方法不定义在-Thread-中？"><a href="#为什么-wait-​-方法不定义在-Thread-中？" class="headerlink" title="为什么 wait()​ 方法不定义在 Thread 中？"></a>为什么 <code>wait()</code>​ 方法不定义在 Thread 中？</h2><p>wait()方法是让对象所的线程实现等待，会自动释放当前线程所占有的对象锁。每个对象都拥有对象锁，既然要释放当前线程所占有的对象锁并进入WAITING状态，自然是要操作对应的对象，而不是当前的线程。</p>
+<h2 id="为什么-​​-sleep-​​-方法定义在-​​Thread​​-中？"><a href="#为什么-​​-sleep-​​-方法定义在-​​Thread​​-中？" class="headerlink" title="为什么 ​​**sleep()​​ 方法定义在 ​​Thread​​ 中？**"></a><strong>为什么 ​</strong>​**<code>sleep()</code><strong>​</strong>​ 方法定义在 ​<strong>​</strong><code>Thread</code><strong>​</strong>​ 中？**</h2><p>因为<code>sleep()</code>​是对线程进行暂停，只是时间调度，不涉及对象，也不需要释放对象锁。</p>
+<p>一个线程调用sleep()不影响其他线程,而wait()会导致当前线程释放锁让其他线程有机会运行。</p>
+<h2 id="可以直接调用-Thread-类的-run-方法吗？"><a href="#可以直接调用-Thread-类的-run-方法吗？" class="headerlink" title="可以直接调用 Thread 类的 run 方法吗？"></a>可以直接调用 Thread 类的 run 方法吗？</h2><p>可以，但是不建议。</p>
+<p>正确方式应该是：</p>
+<ol>
+<li>创建Thread类的子类，重写run()方法。</li>
+<li>创建Thread类的示例</li>
+<li>调用start()方法启动线程，进入就绪状态。</li>
+</ol>
+<p>而直接调用run方法会导致：</p>
+<ol>
+<li>run()方法在当前线程执行，而不是线程中执行，失去了多线程的意义。</li>
+</ol>
+<p>‍</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">var let const三者区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-21 08:36:53" itemprop="dateCreated datePublished" datetime="2021-03-21T08:36:53+08:00">2021-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/" class="post-meta-item leancloud_visitors" data-flag-title="var let const三者区别" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="var"><a href="#var" class="headerlink" title="var"></a><code>var</code></h2><ul>
+<li><code>var</code>声明的变量会挂载在window上，而<code>let</code>和<code>const</code>声明的变量不会<blockquote>
+<p>在最外面用var声明的变量是全局变量;<br>在函数内用var声明的变量是局部变量<br>不用var声明，直接赋值的变量，是全局变量。</p>
+<blockquote>
+<p>注：a = 10,这种声明方式只有在这条语句执行的时候才会创建全局变量a。</p>
+</blockquote>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/" class="post-title-link" itemprop="url">Java中的锁</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-19 14:59:36" itemprop="dateCreated datePublished" datetime="2020-10-19T14:59:36+08:00">2020-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/%E9%94%81/" itemprop="url" rel="index"><span itemprop="name">锁</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/" class="post-meta-item leancloud_visitors" data-flag-title="Java中的锁" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="公平锁-非公平锁"><a href="#公平锁-非公平锁" class="headerlink" title="公平锁 / 非公平锁"></a>公平锁 / 非公平锁</h1><h2 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h2><p><strong>公平锁：(FIFO)多个线程在等待同一个锁时，必须按照申请锁的先后顺序来一次获得锁。</strong></p>
+<blockquote>
+<p>公平锁就好像在餐厅的门口安装了一个排队的护栏，谁先来的谁就站的靠前，无法进行插队，当餐厅中的人用餐结束后会把钥匙交给排在最前边的那个人，以此类推。</p>
+<p>公平锁的好处是，可以保证每个排队的人都有饭吃，先到先吃后到后吃。</p>
+<p>但是弊端是，<strong>要额外安装排队装置。</strong></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">HashMap(JDK1.8)底层原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-13 16:25:34" itemprop="dateCreated datePublished" datetime="2020-10-13T16:25:34+08:00">2020-10-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/HashMap/" itemprop="url" rel="index"><span itemprop="name">HashMap</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="HashMap(JDK1.8)底层原理" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="HashMap概述"><a href="#HashMap概述" class="headerlink" title="HashMap概述"></a>HashMap概述</h1><p><img src="https://i.loli.net/2020/10/19/24qXCrapKQlVB96.png" alt="Map图">​                                    </p>
+<blockquote>
+<ul>
+<li>HashMap是 Key-Value 对映射的抽象接口，该映射不包括重复的键，即一个键对应一个值。</li>
+<li>在HashMap中，其会根据hash算法来计算key-value的存储位置并进行快速存取。</li>
+<li>HashMap允许key和value为null</li>
+<li>当Hash值计算元素位置时，可能会存在Hash冲突（Hash碰撞），HashMap是采用链表解决的。</li>
+<li>HashMap的实现，在JDK7中采用的是数组+链表，JDK8中采用的是数组+链表+红黑树。</li>
+<li>HashMap是非线程安全的，多线程同时put时候会导致数据不一致。HashTable和ConcurrentHashMap是线程安全的，在多线程情况下ConcurrentHashMap是更优的选择。</li>
+<li>HashMap在1.7链表采用头插法避免遍历链表，多线程时扩容可能会发生死循环情况。1.8采用尾插法不会导致死循环，且引入红黑树加快查询效率。</li>
+</ul>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/11/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/11/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Java类加载机制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-11 15:56:11" itemprop="dateCreated datePublished" datetime="2020-10-11T15:56:11+08:00">2020-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Jvm/" itemprop="url" rel="index"><span itemprop="name">Jvm</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/" itemprop="url" rel="index"><span itemprop="name">类的加载</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/10/11/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Java类加载机制" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/11/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/11/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="什么是类的加载"><a href="#什么是类的加载" class="headerlink" title="什么是类的加载"></a>什么是类的加载</h1><ul>
+<li><p>类的加载指的是将<strong>类的.class文件</strong>中的<strong>二进制数据</strong>读入到<strong>内存</strong>中，将其放在运行时数据区的<strong>方法区</strong>内，然后在<strong>堆</strong>区创建一个 java.lang.Class对象，用来封装<strong>类</strong>在<strong>方法区内的数据结构</strong>。</p>
+<p>类的加载的最终产品是位于<strong>堆区中的 Class对象</strong>， Class对象封装了类在方法区内的数据结构，并且向Java程序员提供了访问方法区内的数据结构的接口。</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/11/Jvm/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">SpringMVC执行流程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-10 23:19:09" itemprop="dateCreated datePublished" datetime="2020-10-10T23:19:09+08:00">2020-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringFramework/" itemprop="url" rel="index"><span itemprop="name">SpringFramework</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringFramework/SpringMVC/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="SpringMVC执行流程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="SpringMVC执行流程图"><a href="#SpringMVC执行流程图" class="headerlink" title="SpringMVC执行流程图"></a>SpringMVC执行流程图</h1><p><img src="https://i.loli.net/2020/10/19/SytjFUTe3nJiWEm.jpg" alt="SpringMVC执行流程图"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Spring事务的传播机制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-10 21:09:07" itemprop="dateCreated datePublished" datetime="2020-10-10T21:09:07+08:00">2020-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringFramework/" itemprop="url" rel="index"><span itemprop="name">SpringFramework</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringFramework/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Spring事务的传播机制" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Spring事务的配置方式"><a href="#Spring事务的配置方式" class="headerlink" title="Spring事务的配置方式"></a>Spring事务的配置方式</h1><h2 id="1-编程式事务管理"><a href="#1-编程式事务管理" class="headerlink" title="1. 编程式事务管理"></a>1. 编程式事务管理</h2><p>编程式事务管理是<strong>侵入性</strong>事务管理，粒度为<strong>代码块</strong>。</p>
+<p>使用<code>TransactionTemplate</code>或者直接使用<code>PlatformTransactionManager</code>，对于编程式事务管理，Spring推荐使用<code>TransactionTemplate</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="lhdigo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">事务ACID特性及四大隔离机制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-30 23:10:16" itemprop="dateCreated datePublished" datetime="2020-09-30T23:10:16+08:00">2020-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">事务</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="事务ACID特性及四大隔离机制" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ACID四特性"><a href="#ACID四特性" class="headerlink" title="ACID四特性"></a>ACID四特性</h1><h2 id="Atomicity-原子性"><a href="#Atomicity-原子性" class="headerlink" title="Atomicity: 原子性"></a>Atomicity: 原子性</h2><p>整个事务是一个独立的单元，要么操作成功，要么操作不成功回滚。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhdigo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+    <div class="pjax">
+
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"XEanFd8TWhMlWwcfIm9mk91t-MdYXbMMI","appKey":"NJ9ninjH2inNYGe4dl6VVqJj","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":true,"comment_count":true,"recordIP":true,"enableQQ":true,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/",
+      serverURLs: "https://xeanfd8t.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
