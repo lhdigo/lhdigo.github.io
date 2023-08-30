@@ -27,7 +27,6 @@ jobs:
         npm i -g hexo-cli
         npm i
         hexo clean
-        gulp
         hexo g
     - name: Deploy to Github Pages
       env:
