@@ -608,7 +608,7 @@ changyan:
 # Valine
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  enable: true
+  enable: false
   appId: XEanFd8TWhMlWwcfIm9mk91t-MdYXbMMI
   appKey: NJ9ninjH2inNYGe4dl6VVqJj
   serverURLs: # When the custom domain name is enabled, fill it in here
