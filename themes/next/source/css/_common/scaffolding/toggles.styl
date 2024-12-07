@@ -8,19 +8,24 @@
     left: 0;
     position: relative;
     top: 0;
-    transition: all .4s;
+    transition: .4s;
+    transition-property: left, opacity, top, transform, width;
     width: 100%;
 
+    &:first-child {
+      margin-top: 1px;
+    }
+
     &:not(:first-child) {
-      margin-top: 3px;
+      margin-top: 4px;
     }
   }
 }
 
 .toggle.toggle-arrow {
-  toggle-arrow(hexo-config('sidebar.position'));
+  toggle-arrow($sidebar-toggle-alignment);
 }
 
 .toggle.toggle-close {
-  toggle-close(hexo-config('sidebar.position'));
+  toggle-close($sidebar-toggle-alignment);
 }
