@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lhdigo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Spring事务的配置方式1. 编程式事务管理编程式事务管理是侵入性事务管理，粒度为代码块。 使用TransactionTemplate或者直接使用PlatformTransactionManager，对于编程式事务管理，Spring推荐使用TransactionTemplate。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring事务的传播机制">
+<meta property="og:url" content="https://lhdigo.github.io/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="LHDIGO">
+<meta property="og:description" content="Spring事务的配置方式1. 编程式事务管理编程式事务管理是侵入性事务管理，粒度为代码块。 使用TransactionTemplate或者直接使用PlatformTransactionManager，对于编程式事务管理，Spring推荐使用TransactionTemplate。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-10T13:09:07.000Z">
+<meta property="article:author" content="lhdigo">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="事务">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lhdigo.github.io/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lhdigo.github.io/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/","path":"2020/10/10/SpringFramework/Spring/Spring事务的传播机制/","title":"Spring事务的传播机制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Spring事务的传播机制 | LHDIGO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="LHDIGO" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">LHDIGO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Spring事务的配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">1. 编程式事务管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">2. 声明式事务管理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">Spring事务的传播机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-PROPAGATION-REQUIRED"><span class="nav-number">2.1.</span> <span class="nav-text">1. PROPAGATION_REQUIRED</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-PROPAGATION-SUPPORTS"><span class="nav-number">2.2.</span> <span class="nav-text">2. PROPAGATION_SUPPORTS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-PROPAGATION-NOT-SUPPORTED"><span class="nav-number">2.3.</span> <span class="nav-text">3. PROPAGATION_NOT_SUPPORTED</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-PROPAGATION-REQUIRES-NEW"><span class="nav-number">2.4.</span> <span class="nav-text">4. PROPAGATION_REQUIRES_NEW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-PROPAGATION-NEVER"><span class="nav-number">2.5.</span> <span class="nav-text">5. PROPAGATION_NEVER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-PROPAGATION-MANDATORY"><span class="nav-number">2.6.</span> <span class="nav-text">6. PROPAGATION_MANDATORY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-PROPAGATION-NESTED"><span class="nav-number">2.7.</span> <span class="nav-text">7. PROPAGATION_NESTED</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lhdigo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+<!-- require APlayer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <!-- require MetingJS-->
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> 
+	<!--网易云-->   
+    <div class="aplayer" 
+      data-id="7750234880" 
+      data-server="tencent" 
+      data-type="playlist" 
+      data-fixed="false" 
+      data-autoplay="true" 
+      data-list-folded="true"
+      data-mutex="true"
+      data-order="random" 
+      data-loop="all"
+      data-volume="0.4" 
+      data-theme="#FADFA3" 
+      date-preload="auto" > 
+    </div>
+       <!--添加彩色滚动变换字体-->
+      <div id="binft"></div>
+      <script>
+        var binft = function (r) {
+          function t() {
+            return b[Math.floor(Math.random() * b.length)]
+          }  
+          function e() {
+            return String.fromCharCode(94 * Math.random() + 33)
+          }
+          function n(r) {
+            for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+              var l = document.createElement("span");
+              l.textContent = e(), l.style.color = t(), n.appendChild(l)
+            }
+            return n
+          }
+          function i() {
+            var t = o[c.skillI];
+            c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+          }
+          var l = "",
+          o = ["隐约雷鸣，阴霾天空，", "但盼风雨来，能留你在此。","隐约雷鸣，阴霾天空，", "即使天无雨，我亦留此地。"].map(function (r) {
+          return r + ""
+          }),
+          a = 2,
+          g = 1,
+          s = 5,
+          d = 75,
+          b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+          c = {
+            text: "",
+            prefixP: -s,
+            skillI: 0,
+            skillP: 0,
+            direction: "forward",
+            delay: a,
+            step: g
+          };
+          i()
+          };
+          binft(document.getElementById('binft'));
+      </script>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/10/SpringFramework/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lhdigo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Spring事务的传播机制 | LHDIGO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring事务的传播机制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-10 21:09:07" itemprop="dateCreated datePublished" datetime="2020-10-10T21:09:07+08:00">2020-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-08 05:42:24" itemprop="dateModified" datetime="2024-12-08T05:42:24+08:00">2024-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringFramework/" itemprop="url" rel="index"><span itemprop="name">SpringFramework</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringFramework/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Spring事务的配置方式"><a href="#Spring事务的配置方式" class="headerlink" title="Spring事务的配置方式"></a>Spring事务的配置方式</h1><h2 id="1-编程式事务管理"><a href="#1-编程式事务管理" class="headerlink" title="1. 编程式事务管理"></a>1. 编程式事务管理</h2><p>编程式事务管理是<strong>侵入性</strong>事务管理，粒度为<strong>代码块</strong>。</p>
+<p>使用<code>TransactionTemplate</code>或者直接使用<code>PlatformTransactionManager</code>，对于编程式事务管理，Spring推荐使用<code>TransactionTemplate</code>。</p>
+<span id="more"></span>
+
+<h2 id="2-声明式事务管理"><a href="#2-声明式事务管理" class="headerlink" title="2. 声明式事务管理"></a>2. 声明式事务管理</h2><p>声明式事务，<strong>非侵入式</strong>，建立在<strong>AOP</strong>之上，其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，执行完目标方法之后根据执行的情况提交或者回滚。</p>
+<p>实现方式：配置文件中做事务声明/注解；</p>
+<p>粒度为<strong>方法</strong>级别（不足）；</p>
+<h1 id="Spring事务的传播机制"><a href="#Spring事务的传播机制" class="headerlink" title="Spring事务的传播机制"></a>Spring事务的传播机制</h1><h2 id="1-PROPAGATION-REQUIRED"><a href="#1-PROPAGATION-REQUIRED" class="headerlink" title="1. PROPAGATION_REQUIRED"></a>1. PROPAGATION_REQUIRED</h2><p>默认的spring事务传播级别，使用该级别的特点是，如果上下文中已经存在事务，那么就加入到事务中执行，如果当前上下文中不存在事务，则新建事务执行。所以这个级别通常能满足处理大多数的业务场景。</p>
+<h2 id="2-PROPAGATION-SUPPORTS"><a href="#2-PROPAGATION-SUPPORTS" class="headerlink" title="2. PROPAGATION_SUPPORTS"></a>2. PROPAGATION_SUPPORTS</h2><p>如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</p>
+<p><strong>完全依赖外层的事务</strong></p>
+<h2 id="3-PROPAGATION-NOT-SUPPORTED"><a href="#3-PROPAGATION-NOT-SUPPORTED" class="headerlink" title="3. PROPAGATION_NOT_SUPPORTED"></a>3. PROPAGATION_NOT_SUPPORTED</h2><p>总是以非事务方式运行，如果当前存在事务，则把当前事务挂起。</p>
+<p>执行完当前代码，则恢复外层事务，无论是否异常都不会回滚当前的代码</p>
+<h2 id="4-PROPAGATION-REQUIRES-NEW"><a href="#4-PROPAGATION-REQUIRES-NEW" class="headerlink" title="4. PROPAGATION_REQUIRES_NEW"></a>4. PROPAGATION_REQUIRES_NEW</h2><p>创建一个新的事务，如果当前存在事务，则把当前事务挂起。当新事务执行完毕，恢复上层事务的执行。</p>
+<h2 id="5-PROPAGATION-NEVER"><a href="#5-PROPAGATION-NEVER" class="headerlink" title="5. PROPAGATION_NEVER"></a>5. PROPAGATION_NEVER</h2><p>以非事务方式运行，如果当前存在事务，则抛出异常。</p>
+<h2 id="6-PROPAGATION-MANDATORY"><a href="#6-PROPAGATION-MANDATORY" class="headerlink" title="6. PROPAGATION_MANDATORY"></a>6. PROPAGATION_MANDATORY</h2><p>与NEVER相反，若外层无事务，则抛出异常。若当前存在事务，则加入该事务；</p>
+<h2 id="7-PROPAGATION-NESTED"><a href="#7-PROPAGATION-NESTED" class="headerlink" title="7. PROPAGATION_NESTED"></a>7. PROPAGATION_NESTED</h2><p>如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，等价于<code>PROPAGATION_REQUIRED</code></p>
+<blockquote>
+<p>子事务回滚，父事务可选择性回滚或者不会滚</p>
+<p>父事务回滚，子事务一定回滚</p>
+</blockquote>
+<p>该传播机制的特点是可以保存状态保存点，当前事务回滚到某一个点，从而避免所有的嵌套事务都回滚，即各自回滚各自的，如果子事务没有把异常吃掉，基本还是会引起全部回滚。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spring/" rel="tag"># Spring</a>
+              <a href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag"># 事务</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1ACID%E7%89%B9%E6%80%A7%E5%8F%8A%E5%9B%9B%E5%A4%A7%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6/" rel="prev" title="事务ACID特性及四大隔离机制">
+                  <i class="fa fa-angle-left"></i> 事务ACID特性及四大隔离机制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/10/SpringFramework/SpringMVC/SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" rel="next" title="SpringMVC执行流程">
+                  SpringMVC执行流程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lhdigo</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

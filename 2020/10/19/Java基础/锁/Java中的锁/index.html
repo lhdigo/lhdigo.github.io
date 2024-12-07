@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lhdigo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="公平锁 &#x2F; 非公平锁公平锁公平锁：(FIFO)多个线程在等待同一个锁时，必须按照申请锁的先后顺序来一次获得锁。  公平锁就好像在餐厅的门口安装了一个排队的护栏，谁先来的谁就站的靠前，无法进行插队，当餐厅中的人用餐结束后会把钥匙交给排在最前边的那个人，以此类推。 公平锁的好处是，可以保证每个排队的人都有饭吃，先到先吃后到后吃。 但是弊端是，要额外安装排队装置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的锁">
+<meta property="og:url" content="https://lhdigo.github.io/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/index.html">
+<meta property="og:site_name" content="LHDIGO">
+<meta property="og:description" content="公平锁 &#x2F; 非公平锁公平锁公平锁：(FIFO)多个线程在等待同一个锁时，必须按照申请锁的先后顺序来一次获得锁。  公平锁就好像在餐厅的门口安装了一个排队的护栏，谁先来的谁就站的靠前，无法进行插队，当餐厅中的人用餐结束后会把钥匙交给排在最前边的那个人，以此类推。 公平锁的好处是，可以保证每个排队的人都有饭吃，先到先吃后到后吃。 但是弊端是，要额外安装排队装置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/10/19/xt3d6XGgKWhaNr5.png">
+<meta property="article:published_time" content="2020-10-19T06:59:36.000Z">
+<meta property="article:author" content="lhdigo">
+<meta property="article:tag" content="Java锁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/19/xt3d6XGgKWhaNr5.png">
+
+
+<link rel="canonical" href="https://lhdigo.github.io/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lhdigo.github.io/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/","path":"2020/10/19/Java基础/锁/Java中的锁/","title":"Java中的锁"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java中的锁 | LHDIGO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="LHDIGO" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">LHDIGO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E5%B9%B3%E9%94%81-%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="nav-number">1.</span> <span class="nav-text">公平锁 &#x2F; 非公平锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%B9%B3%E9%94%81"><span class="nav-number">1.1.</span> <span class="nav-text">公平锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="nav-number">1.2.</span> <span class="nav-text">非公平锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E9%94%81-%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-number">2.</span> <span class="nav-text">互斥锁 &#x2F; 读写锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E9%94%81"><span class="nav-number">2.1.</span> <span class="nav-text">互斥锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-number">2.2.</span> <span class="nav-text">读写锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81-%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">3.</span> <span class="nav-text">可重入锁 &#x2F; 不可重入锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">3.1.</span> <span class="nav-text">可重入锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">3.2.</span> <span class="nav-text">不可重入锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%901-%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%85%A5%E7%9A%84%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">3.2.1.</span> <span class="nav-text">例子1 不可重入的自旋锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%902-%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">3.2.2.</span> <span class="nav-text">例子2 不可重入锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81-%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-number">4.</span> <span class="nav-text">乐观锁 &#x2F; 悲观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81-%E9%9D%9E%E4%BA%92%E6%96%A5%E9%94%81"><span class="nav-number">4.1.</span> <span class="nav-text">乐观锁(非互斥锁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS%E5%B9%B6%E4%B8%8D%E6%98%AF%E4%B8%80%E7%A7%8D%E5%AE%9E%E9%99%85%E7%9A%84%E9%94%81%EF%BC%8C%E5%AE%83%E5%8F%AA%E6%98%AF%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%80%9D%E6%83%B3%E3%80%82"><span class="nav-number">4.2.</span> <span class="nav-text">CAS并不是一种实际的锁，它只是实现乐观锁的一种思想。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%82%B2%E8%A7%82%E9%94%81%EF%BC%88%E4%BA%92%E6%96%A5%E9%94%81%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">悲观锁（互斥锁）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">5.</span> <span class="nav-text">自旋锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%85%A5%E7%9A%84%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">5.1.</span> <span class="nav-text">不可重入的自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%87%8D%E5%85%A5%E7%9A%84%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">5.2.</span> <span class="nav-text">可重入的自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%97%8B%E9%94%81%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">5.3.</span> <span class="nav-text">自旋锁的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%97%8B%E9%94%81%E4%B8%8E%E4%BA%92%E6%96%A5%E9%94%81"><span class="nav-number">5.4.</span> <span class="nav-text">自旋锁与互斥锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%97%8B%E9%94%81%E6%80%BB%E7%BB%93"><span class="nav-number">5.4.1.</span> <span class="nav-text">自旋锁总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">6.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81"><span class="nav-number">6.1.</span> <span class="nav-text">什么是死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E6%9C%AC%E8%B4%A8%E5%8E%9F%E5%9B%A0"><span class="nav-number">6.2.</span> <span class="nav-text">死锁本质原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%88%90%E6%AD%BB%E9%94%81%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">6.3.</span> <span class="nav-text">形成死锁的四个必要条件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%BB%E9%94%81"><span class="nav-number">7.</span> <span class="nav-text">活锁</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lhdigo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+<!-- require APlayer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <!-- require MetingJS-->
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> 
+	<!--网易云-->   
+    <div class="aplayer" 
+      data-id="7750234880" 
+      data-server="tencent" 
+      data-type="playlist" 
+      data-fixed="false" 
+      data-autoplay="true" 
+      data-list-folded="true"
+      data-mutex="true"
+      data-order="random" 
+      data-loop="all"
+      data-volume="0.4" 
+      data-theme="#FADFA3" 
+      date-preload="auto" > 
+    </div>
+       <!--添加彩色滚动变换字体-->
+      <div id="binft"></div>
+      <script>
+        var binft = function (r) {
+          function t() {
+            return b[Math.floor(Math.random() * b.length)]
+          }  
+          function e() {
+            return String.fromCharCode(94 * Math.random() + 33)
+          }
+          function n(r) {
+            for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+              var l = document.createElement("span");
+              l.textContent = e(), l.style.color = t(), n.appendChild(l)
+            }
+            return n
+          }
+          function i() {
+            var t = o[c.skillI];
+            c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+          }
+          var l = "",
+          o = ["隐约雷鸣，阴霾天空，", "但盼风雨来，能留你在此。","隐约雷鸣，阴霾天空，", "即使天无雨，我亦留此地。"].map(function (r) {
+          return r + ""
+          }),
+          a = 2,
+          g = 1,
+          s = 5,
+          d = 75,
+          b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+          c = {
+            text: "",
+            prefixP: -s,
+            skillI: 0,
+            skillP: 0,
+            direction: "forward",
+            delay: a,
+            step: g
+          };
+          i()
+          };
+          binft(document.getElementById('binft'));
+      </script>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lhdigo.github.io/2020/10/19/Java%E5%9F%BA%E7%A1%80/%E9%94%81/Java%E4%B8%AD%E7%9A%84%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lhdigo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHDIGO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java中的锁 | LHDIGO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java中的锁
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-19 14:59:36" itemprop="dateCreated datePublished" datetime="2020-10-19T14:59:36+08:00">2020-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-08 05:42:24" itemprop="dateModified" datetime="2024-12-08T05:42:24+08:00">2024-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/%E9%94%81/" itemprop="url" rel="index"><span itemprop="name">锁</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="公平锁-非公平锁"><a href="#公平锁-非公平锁" class="headerlink" title="公平锁 / 非公平锁"></a>公平锁 / 非公平锁</h1><h2 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h2><p><strong>公平锁：(FIFO)多个线程在等待同一个锁时，必须按照申请锁的先后顺序来一次获得锁。</strong></p>
+<blockquote>
+<p>公平锁就好像在餐厅的门口安装了一个排队的护栏，谁先来的谁就站的靠前，无法进行插队，当餐厅中的人用餐结束后会把钥匙交给排在最前边的那个人，以此类推。</p>
+<p>公平锁的好处是，可以保证每个排队的人都有饭吃，先到先吃后到后吃。</p>
+<p>但是弊端是，<strong>要额外安装排队装置。</strong></p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="非公平锁"><a href="#非公平锁" class="headerlink" title="非公平锁"></a>非公平锁</h2><p><strong>非公平锁：多个线程获取锁的顺序并不是按照申请锁的顺序，有可能后申请的线程比先申请的线程优先获取锁。有可能，会造成优先级反转或者饥饿现象。</strong></p>
+<blockquote>
+<p>非公平锁就是不用排队，当餐厅里的人出来后将钥匙往地上一扔，谁抢到算谁的。</p>
+<p>但是这样就造成了一个问题，那些身强体壮的人可能总是会先抢到钥匙，而那些身体瘦小的人可能一直抢不到。</p>
+<p>这就有可能将一直抢不到钥匙，最后导致需要很长时间才能拿到钥匙甚至一直拿不到直至饿死。</p>
+<p><strong>非公平锁的优点在于吞吐量比公平锁大。</strong></p>
+</blockquote>
+<p><strong>对于<code>Synchronized</code>而言，是一种非公平锁。</strong>由于其并不像<code>ReentrantLock</code>是通过<code>AQS</code>的来实现线程调度，所以并没有任何办法使其变成公平锁。</p>
+<p>对于<code>Java ReentrantLock</code>而言，通过构造函数指定该锁是否是公平锁。默认是<strong>非公平锁</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125;.</span></span><br><span class="line"><span class="comment">    * This is equivalent to using &#123;<span class="doctag">@code</span> ReentrantLock(false)&#125;.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">ReentrantLock</span><span class="params">()</span> &#123;</span><br><span class="line">       sync = <span class="keyword">new</span> <span class="title class_">NonfairSync</span>();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125; with the</span></span><br><span class="line"><span class="comment">    * given fairness policy.</span></span><br><span class="line"><span class="comment">    *	传入true则变公平锁</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> fair &#123;<span class="doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">ReentrantLock</span><span class="params">(<span class="type">boolean</span> fair)</span> &#123;</span><br><span class="line">       sync = fair ? <span class="keyword">new</span> <span class="title class_">FairSync</span>() : <span class="keyword">new</span> <span class="title class_">NonfairSync</span>();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="互斥锁-读写锁"><a href="#互斥锁-读写锁" class="headerlink" title="互斥锁 / 读写锁"></a>互斥锁 / 读写锁</h1><h2 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h2><blockquote>
+<p>互斥锁 通过<strong>悲观锁</strong>的理念引出来的；</p>
+<p>非互斥锁  通过<strong>乐观锁</strong>的概念引申的。</p>
+</blockquote>
+<p>互斥锁也就是常说的<strong>同步</strong>，即一次最多只能有一个线程持有的锁，当一个线程持有该锁的时候其它线程无法进入上锁的区域。</p>
+<p>在Java中<code>synchronized</code>就是互斥锁，从宏观概念来讲，互斥锁就是通过<strong>悲观锁</strong>的理念引出来的，而非互斥锁则是通过<strong>乐观锁</strong>的概念引申的。</p>
+<h2 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h2><p><strong>读写锁有三种状态</strong>：<strong>读加锁</strong>状态、写加锁状态和<strong>不加锁</strong>状态</p>
+<p><strong>读写锁在Java中的具体实现就是</strong><code>ReadWriteLock</code></p>
+<p>一次只有一个线程可以占有写模式的读写锁，但是多个线程可以同时占有读模式的读写锁。<br>只有一个线程可以占有写状态的锁，但可以有多个线程同时占有读状态锁，这也是它可以实现高并发的原因。当其处于写状态锁下，任何想要尝试获得锁的线程都会被阻塞，直到写状态锁被释放；如果是处于读状态锁下，允许其它线程获得它的读状态锁，但是不允许获得它的写状态锁，直到所有线程的读状态锁被释放；为了避免想要尝试写操作的线程一直得不到写状态锁，当读写锁感知到有线程想要获得写状态锁时，便会阻塞其后所有想要获得读状态锁的线程。所以读写锁非常适合资源的读操作远多于写操作的情况。</p>
+<h1 id="可重入锁-不可重入锁"><a href="#可重入锁-不可重入锁" class="headerlink" title="可重入锁 / 不可重入锁"></a>可重入锁 / 不可重入锁</h1><h2 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h2><p>广义上的可重入锁指的是可重复可递归调用的锁，在外层使用锁之后，在内层仍然可以使用，并且不发生死锁（前提得是同一个对象或者class）<code>ReentrantLock</code>和<code>synchronized</code>都是可重入锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReentrantDemo</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> Lock mLock;</span><br><span class="line"> 	<span class="comment">//若不是可重入锁，inner()将不会在outer()中调用。需要等待外层outer()先释放锁</span></span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">ReentrantDemo</span><span class="params">(Lock mLock)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.mLock = mLock;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">outer</span><span class="params">()</span> &#123;</span><br><span class="line">		mLock.lock();</span><br><span class="line">		inner();</span><br><span class="line">		mLock.unlock();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">inner</span><span class="params">()</span> &#123;</span><br><span class="line">		mLock.lock();</span><br><span class="line">		<span class="comment">// do something</span></span><br><span class="line">		mLock.unlock();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">setA</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">   Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">   setB();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">setB</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">   Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">&#125;<span class="comment">//如果synchronized不是可重入锁的话，setB可能不会被当前线程执行，可能造成死锁。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="不可重入锁"><a href="#不可重入锁" class="headerlink" title="不可重入锁"></a>不可重入锁</h2><p>不可重入锁，与可重入锁相反，不可递归调用，递归调用就发生死锁。</p>
+<h3 id="例子1-不可重入的自旋锁"><a href="#例子1-不可重入的自旋锁" class="headerlink" title="例子1 不可重入的自旋锁"></a>例子1 不可重入的自旋锁</h3><p>使用<strong>自旋锁</strong>来模拟一个不可重入锁，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicReference;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//使用原子引用来存放线程，同一线程两次调用lock()方法，如果不执行unlock()释放锁的话，第二次调用自旋的时候就会产生死锁。</span></span><br><span class="line"> <span class="comment">//这个锁就不是可重入的，而实际上同一个线程不必每次都去释放锁再来获取锁，这样的调度切换是很耗资源的。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UnreentrantLock</span> &#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> AtomicReference&lt;Thread&gt; owner = <span class="keyword">new</span> <span class="title class_">AtomicReference</span>&lt;Thread&gt;();</span><br><span class="line">	</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lock</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">current</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">//这句是很经典的“自旋”语法，AtomicInteger中也有</span></span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!owner.compareAndSet(<span class="literal">null</span>, current)) &#123;</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">current</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       owner.compareAndSet(current, <span class="literal">null</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="例子2-不可重入锁"><a href="#例子2-不可重入锁" class="headerlink" title="例子2 不可重入锁"></a>例子2 不可重入锁</h3><p>下面也是一段<strong>不可重入锁</strong>的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以看到，当isLocked被设置为true后，在线程调用unlock()解锁之前不管线程是否已经获得锁，都只能wait()。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Lock</span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isLocked</span> <span class="operator">=</span> <span class="literal">false</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">lock</span><span class="params">()</span>  </span><br><span class="line">        <span class="keyword">throws</span> InterruptedException&#123;  </span><br><span class="line">        <span class="keyword">while</span>(isLocked)&#123;  </span><br><span class="line">            wait();  </span><br><span class="line">        &#125;  </span><br><span class="line">        isLocked = <span class="literal">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">()</span>&#123;  </span><br><span class="line">        isLocked = <span class="literal">false</span>;  </span><br><span class="line">        notify();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="乐观锁-悲观锁"><a href="#乐观锁-悲观锁" class="headerlink" title="乐观锁 / 悲观锁"></a>乐观锁 / 悲观锁</h1><p><img src="https://i.loli.net/2020/10/19/xt3d6XGgKWhaNr5.png" alt="image-20201019203700846"></p>
+<h2 id="乐观锁-非互斥锁"><a href="#乐观锁-非互斥锁" class="headerlink" title="乐观锁(非互斥锁)"></a>乐观锁(非互斥锁)</h2><blockquote>
+<p>总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可使用版本号机制和CAS算法实现。</p>
+<p>(比较与上一次的版本号，如果一样则更新），如果失败则要继续CAS(CompareAndSet)的操作。</p>
+</blockquote>
+<p>乐观锁适用于<strong>多读</strong>的应用类型，这样可以提高吞吐量，像数据库提供的类似于<code>write_condition</code>机制，其实都是提供的乐观锁。</p>
+<h2 id="CAS并不是一种实际的锁，它只是实现乐观锁的一种思想。"><a href="#CAS并不是一种实际的锁，它只是实现乐观锁的一种思想。" class="headerlink" title="CAS并不是一种实际的锁，它只是实现乐观锁的一种思想。"></a>CAS并不是一种实际的锁，它只是实现乐观锁的一种思想。</h2><p>java中的乐观锁（如自旋锁）基本都是通过CAS操作实现的，CAS是一种更新的原子操作，比较当前值跟传入值是否一样，一样则更新，否则失败。在<code>Java</code>中<code>java.util.concurrent.atomic</code>包下面的<strong>原子变量类就是使用了乐观锁的一种实现方式CAS实现的</strong>。</p>
+<h2 id="悲观锁（互斥锁）"><a href="#悲观锁（互斥锁）" class="headerlink" title="悲观锁（互斥锁）"></a>悲观锁（互斥锁）</h2><blockquote>
+<p>悲观锁是就是悲观思想，即认为<strong>读少写多</strong>，遇到<strong>并发写</strong>的可能性高。</p>
+<p>每次去拿数据的时候都认为别人会修改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会block直到拿到锁。</p>
+</blockquote>
+<p>传统的关系型数据库里边就用到了很多这种锁机制，比如<strong>行锁</strong>，<strong>表锁</strong>等，<strong>读锁</strong>，写锁等，都是在做操作之前先上锁。</p>
+<p><code>Java</code>中<code>synchronized</code>和<code>ReentrantLock</code>等<strong>独占锁</strong>就是悲观锁思想的实现。</p>
+<h1 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h1><p><strong>自旋锁（spinlock）当一个线程在获取锁的时候，如果锁已经被其它线程获取，那么该线程将循环等待，然后不断的判断锁是否能够被成功获取，直到获取到锁才会退出循环</strong>。</p>
+<p><strong>它是为实现保护共享资源而提出一种锁机制。</strong></p>
+<blockquote>
+<p>自旋锁与互斥锁比较类似，它们都是为了解决对某项资源的互斥使用。</p>
+<p><strong>无论是互斥锁，还是自旋锁，在任何时刻，最多只能有一个保持者，也就说，在任何时刻最多只能有一个执行单元获得锁</strong>。</p>
+<p>但是两者在调度机制上略有不同：</p>
+<ul>
+<li>对于互斥锁，如果资源已经被占用，资源申请者只能进入睡眠状态。</li>
+<li>对于自旋锁，不会引起调用者睡眠，如果自旋锁已经被别的执行单元保持，调用者就一直循环在那里看是否该自旋锁的保持者已经释放了锁，”自旋”一词就是因此而得名。</li>
+</ul>
+</blockquote>
+<h2 id="不可重入的自旋锁"><a href="#不可重入的自旋锁" class="headerlink" title="不可重入的自旋锁"></a>不可重入的自旋锁</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicReference;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UnreentrantLock</span> &#123;</span><br><span class="line">  <span class="comment">//使用原子引用来存放线程，同一线程两次调用lock()方法，如果不执行unlock()释放锁的话，第二次调用自旋的时候就会产生死锁。</span></span><br><span class="line"> <span class="comment">//这个锁就不是可重入的，而实际上同一个线程不必每次都去释放锁再来获取锁，这样的调度切换是很耗资源的。</span></span><br><span class="line">   <span class="keyword">private</span> AtomicReference&lt;Thread&gt; owner = <span class="keyword">new</span> <span class="title class_">AtomicReference</span>&lt;Thread&gt;();</span><br><span class="line">	</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lock</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">current</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">//这句是很经典的“自旋”语法，AtomicInteger中也有</span></span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!owner.compareAndSet(<span class="literal">null</span>, current)) &#123;</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">current</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       owner.compareAndSet(current, <span class="literal">null</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>lock（)</code>方法利用的CAS，当第一个线程A获取锁的时候，能够成功获取到，不会进入while循环，如果此时线程A没有释放锁，另一个线程B又来获取锁，此时由于不满足CAS，所以就会进入while循环，不断判断是否满足CAS，直到A线程调用<code>unlock()</code>方法释放了该锁。</p>
+<h2 id="可重入的自旋锁"><a href="#可重入的自旋锁" class="headerlink" title="可重入的自旋锁"></a>可重入的自旋锁</h2><p>上面的那段代码，它是不支持重入的，即当一个线程第一次已经获取到了该锁，在锁释放之前又一次重新获取该锁，第二次就不能成功获取到。由于不满足CAS，所以第二次获取会进入while循环等待，而如果是可重入锁，第二次也是应该能够成功获取到的。</p>
+<p>而且，即使第二次能够成功获取，那么当第一次释放锁的时候，第二次获取到的锁也会被释放，而这是不合理的。</p>
+<p>为了实现可重入锁，我们需要引入一个计数器，用来记录获取锁的线程数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReentrantSpinLock</span> &#123;</span><br><span class="line">   <span class="comment">// 利用AtomicReference来调用CAS，ar初始（内存）值是null</span></span><br><span class="line">   <span class="keyword">private</span> AtomicReference&lt;Thread&gt; cas = <span class="keyword">new</span> <span class="title class_">AtomicReference</span>&lt;Thread&gt;();</span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> count;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lock</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">current</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="comment">// 获取内存值，若已取到锁（初始值为null，当内存值也为null说明取到锁了）</span></span><br><span class="line">       <span class="keyword">if</span> (current == cas.get()) &#123; <span class="comment">// 如果当前线程已经获取到了锁，线程数增加一，然后返回</span></span><br><span class="line">           count++;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 如果没获取到锁，则通过CAS自旋</span></span><br><span class="line">       <span class="keyword">while</span> (!cas.compareAndSet(<span class="literal">null</span>, current)) &#123;</span><br><span class="line">           <span class="comment">// DO nothing</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">Thread</span> <span class="variable">cur</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">       <span class="keyword">if</span> (cur == cas.get()) &#123;</span><br><span class="line">           <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;<span class="comment">// 如果大于0，表示当前线程多次获取了该锁，释放锁通过count减一来模拟</span></span><br><span class="line">               count--;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;<span class="comment">// 如果count==0，可以将锁释放，这样就能保证获取锁的次数与释放锁的次数是一致的了。</span></span><br><span class="line">               cas.compareAndSet(cur, <span class="literal">null</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="自旋锁的优点"><a href="#自旋锁的优点" class="headerlink" title="自旋锁的优点"></a><strong>自旋锁的优点</strong></h2><p>1、自旋锁不会使线程状态发生切换，一直处于用户态，即线程一直都是active的；不会使线程进入阻塞状态，减少了不必要的上下文切换，执行速度快<br>2、非自旋锁在获取不到锁的时候会进入阻塞状态，从而进入内核态，当获取到锁的时候需要从内核态恢复，需要线程上下文切换。（线程被阻塞后便进入内核（Linux）调度状态，这个会导致系统在用户态与内核态之间来回切换，严重影响锁的性能）</p>
+<h2 id="自旋锁与互斥锁"><a href="#自旋锁与互斥锁" class="headerlink" title="自旋锁与互斥锁"></a>自旋锁与互斥锁</h2><ol>
+<li><p>自旋锁与互斥锁都是为了实现保护资源共享的机制。</p>
+</li>
+<li><p>无论是自旋锁还是互斥锁，在任意时刻，都最多只能有一个保持者。</p>
+</li>
+<li><p>获取互斥锁的线程，如果锁已经被占用，则该线程将进入睡眠状态；获取自旋锁的线程则不会睡眠，而是一直循环等待锁释放。</p>
+</li>
+</ol>
+<h3 id="自旋锁总结"><a href="#自旋锁总结" class="headerlink" title="自旋锁总结"></a><strong>自旋锁总结</strong></h3><ol>
+<li><p>自旋锁：线程获取锁的时候，如果锁被其他线程持有，则当前线程将循环等待，直到获取到锁。</p>
+</li>
+<li><p>自旋锁等待期间，线程的状态不会改变，线程一直是用户态并且是活动的(active)。</p>
+</li>
+<li><p>自旋锁如果持有锁的时间太长，则会导致其它等待获取锁的线程耗尽CPU。</p>
+</li>
+<li><p>自旋锁本身无法保证公平性，同时也无法保证可重入性。</p>
+</li>
+<li><p>基于自旋锁，可以实现具备公平性和可重入性质的锁。</p>
+</li>
+</ol>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><h2 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h2><p>所谓死锁是指多个线程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。</p>
+<blockquote>
+<p>两人人一起吃饭但是只有一双筷子</p>
+<p>某一个时候，A拿了左筷子，B拿了右筷子，两人都在<strong>循环等待</strong>等待另一跟筷子，二两人都不肯放弃手中的筷子（不可剥夺）。</p>
+</blockquote>
+<h2 id="死锁本质原因"><a href="#死锁本质原因" class="headerlink" title="死锁本质原因"></a>死锁本质原因</h2><p>   <strong>本质原因：</strong></p>
+<ol>
+<li><p>系统资源有限。</p>
+</li>
+<li><p>进程推进顺序不合理。</p>
+</li>
+</ol>
+<h2 id="形成死锁的四个必要条件"><a href="#形成死锁的四个必要条件" class="headerlink" title="形成死锁的四个必要条件"></a>形成死锁的四个必要条件</h2><ol>
+<li><p><strong>互斥</strong>：进程要求对所分配的资源仅能给一个进程拥有</p>
+</li>
+<li><p><strong>不可剥夺</strong>：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走（只能是主动释放)。</p>
+</li>
+<li><p><strong>请求和保持</strong>：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源 已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。</p>
+<blockquote>
+<p>比如：A拿了左筷子，但又想要右筷子，而右筷子在B手中。</p>
+</blockquote>
+</li>
+<li><p><strong>循环等待</strong>：存在一种进程资源的循环等待链，链中每一个进程已获得的资源同时被 链中下一个进程所请求。即存在一个处于等待状态的进程集合{Pl, P2, …, pn}，其中Pi等 待的资源被P(i+1)占有（i=0, 1, …, n-1)，Pn等待的资源被P0占有。</p>
+<blockquote>
+<p>比如：A等待的筷子在B手中，B等待的筷子在A手中。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h1><p>活锁可以认为是一种特殊的饥饿。</p>
+<p>活锁和死锁在表现上是一样的两个线程都<strong>没有任何进展</strong>。</p>
+<p>但是区别在于：死锁，两个线程都处于<strong>阻塞状态</strong>，说白了就是它不会再做任何动作，我们通过查看线程状态是可以分辨出来的。</p>
+<p>而活锁并不会阻塞，而是一直<strong>尝试去获取需要的锁</strong>，不断的try，这种情况下线程并没有阻塞所以是<strong>活的状态</strong>，我们查看线程的状态也会发现线程是正常的，但重要的是整个程序却不能继续执行了，一直在做无用功。</p>
+<p>例子：</p>
+<blockquote>
+<p>两个人在窄路相遇，同时向一个方向避让，然后又向另一个方向避让，如此反复，还是不能让对方通过。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E9%94%81/" rel="tag"># Java锁</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/13/Java%E5%9F%BA%E7%A1%80/HashMap/HashMap-JDK1-8-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" rel="prev" title="HashMap(JDK1.8)底层原理">
+                  <i class="fa fa-angle-left"></i> HashMap(JDK1.8)底层原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/21/%E5%89%8D%E7%AB%AF/JavaScript/var-let-const%E4%B8%89%E8%80%85%E5%8C%BA%E5%88%AB/" rel="next" title="var let const三者区别">
+                  var let const三者区别 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lhdigo</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
